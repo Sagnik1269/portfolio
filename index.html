@@ -1,11 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <title>PORTFOLIO | Sagnik Mondal</title>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="sub-header">
+            <div class="toggle-button">
+                <div class="light-text">
+                    LIGHT
+                </div>
+                <input type="checkbox" id="switch" onclick="toggleTheme()" /><label for="switch">Toggle</label>
+                <div class="dark-text">
+                    DARK
+                </div>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">HOME</a>
+                <a href="index.html">ABOUT</a>
+                <a href="index.html">PROJECTS</a>
+                <a href="index.html">CONTACT</a>
+            </div>
+        </div>
+
+
+        <div class="my-info-1">
+            <div class="text">
+                <div class="first-line">
+                    Hi<span style="font-size: 40px;">&#x1F44B;</span>!
+                </div>
+                <div class="second-line">
+                    I am Sagnik Mondal
+                </div>
+                <div class="third-line" id="job-title">
+                </div>
+            </div>
+            <div class="image">
+                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
+            </div>
+        </div>
+
+        <div class="my-info-2">
+            <div class="text">
+                <div class="first-line">
+                    Hi<span style="font-size: 40px;">&#x1F44B;</span>
+                </div>
+                <div class="second-line">
+                    I am Sagnik Mondal
+                </div>
+                <div class="third-line">
+                    Software Developer
+                </div>
+            </div>
+            <div class="image">
+                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
+            </div>
+        </div>
+
+        <div class="my-info-3">
+            <div class="text">
+                <div class="first-line">
+                    Hi<span style="font-size: 40px;">&#x1F44B;</span>
+                </div>
+                <div class="second-line">
+                    I am Sagnik Mondal
+                </div>
+                <div class="third-line">
+                    Software Developer
+                </div>
+            </div>
+            <div class="image">
+                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-theme");
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            //div appearing after page is loaded
+
+            document.querySelector('.my-info').style.animationPlayState = 'running';
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Array of words to shuffle
+            var jobTitles = ['Software Developer', 'Software Designer', 'Guitarist', 'Cricketer', 'Bookworm']
+
+            var jobIndex = 0;
+            var titleIndex = 1;
+            var up = 1;
+            var down = 1
+            // Function to shuffle words
+            function shuffleJobTitle() {
+                if (jobIndex >= jobTitles.length) {
+                    jobIndex = 0
+                }
+                document.getElementById('job-title').textContent = jobTitles[jobIndex].substring(0, titleIndex);
+                if (up == 1) {
+                    if (titleIndex < jobTitles[jobIndex].length) {
+                        titleIndex = titleIndex + 1
+                    }
+                    else {
+                        up = 0
+                    }
+                }
+                else if (down == 1) {
+                    if (titleIndex > 1) {
+                        titleIndex = titleIndex - 1
+                    }
+                    else {
+                        down = 0;
+                    }
+                }
+
+
+                if (up == 0 && down == 0) {
+                    jobIndex = (jobIndex + 1) % jobTitles.length;
+                    up = 1;
+                    down = 1;
+                }
+            }
+
+            // Shuffle job title every 3 seconds (adjust the interval as needed)
+            setInterval(shuffleJobTitle, 100);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            function handleScrollAnimation() {
+                var scrollPosition = window.scrollY;
+                
+                const div = document.querySelector('.sub-header')
+                const {
+                    top: t,
+                    left: l
+                } = div.getBoundingClientRect();
+                console.log(t, l)
+
+                // Calculate the size and opacity based on scroll position
+                // var newSize = Math.max(100 - scrollPosition / 3, 0);
+                // var newOpacity = Math.max(1 - scrollPosition / 100, 0);
+
+                // // Apply the new size and opacity to the my-info div
+                // myInfoDiv.style.height = newSize + 'vh';
+                // myInfoDiv.style.opacity = newOpacity;
+            }
+
+            // Handle scroll event with the new function
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+
+
+    </script>
+
 </body>
+
 </html>
