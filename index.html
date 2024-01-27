@@ -34,56 +34,57 @@
             </div>
         </div>
 
+        <section id="main-content">
+            <div class="my-info-1">
+                <div class="text">
+                    <div class="first-line">
+                        Hi<span style="font-size: 40px;">&#x1F44B;</span>!
+                    </div>
+                    <div class="second-line">
+                        I am Sagnik Mondal
+                    </div>
+                    <div class="third-line" id="job-title">
+                    </div>
+                </div>
+                <div class="image">
+                    <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
+                </div>
+            </div>
 
-        <div class="my-info-1">
-            <div class="text">
-                <div class="first-line">
-                    Hi<span style="font-size: 40px;">&#x1F44B;</span>!
+            <div class="my-info-2">
+                <div class="text">
+                    <div class="first-line">
+                        Hi<span style="font-size: 40px;">&#x1F44B;</span>
+                    </div>
+                    <div class="second-line">
+                        I am Sagnik Mondal
+                    </div>
+                    <div class="third-line">
+                        Software Developer
+                    </div>
                 </div>
-                <div class="second-line">
-                    I am Sagnik Mondal
-                </div>
-                <div class="third-line" id="job-title">
+                <div class="image">
+                    <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
                 </div>
             </div>
-            <div class="image">
-                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
-            </div>
-        </div>
 
-        <div class="my-info-2">
-            <div class="text">
-                <div class="first-line">
-                    Hi<span style="font-size: 40px;">&#x1F44B;</span>
+            <div class="my-info-3">
+                <div class="text">
+                    <div class="first-line">
+                        Hi<span style="font-size: 40px;">&#x1F44B;</span>
+                    </div>
+                    <div class="second-line">
+                        I am Sagnik Mondal
+                    </div>
+                    <div class="third-line">
+                        Software Developer
+                    </div>
                 </div>
-                <div class="second-line">
-                    I am Sagnik Mondal
-                </div>
-                <div class="third-line">
-                    Software Developer
-                </div>
-            </div>
-            <div class="image">
-                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
-            </div>
-        </div>
-
-        <div class="my-info-3">
-            <div class="text">
-                <div class="first-line">
-                    Hi<span style="font-size: 40px;">&#x1F44B;</span>
-                </div>
-                <div class="second-line">
-                    I am Sagnik Mondal
-                </div>
-                <div class="third-line">
-                    Software Developer
+                <div class="image">
+                    <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
                 </div>
             </div>
-            <div class="image">
-                <img src="assets/images/tiger.jpg" alt="Profile Picture" width="500" height="400">
-            </div>
-        </div>
+        </section>
 
 
     </div>
@@ -124,7 +125,7 @@
                         up = 0
                     }
                 }
-                else if (down == 1) {
+                else if (down == 1) {d
                     if (titleIndex > 1) {
                         titleIndex = titleIndex - 1
                     }
@@ -148,21 +149,41 @@
         document.addEventListener('DOMContentLoaded', function () {
             function handleScrollAnimation() {
                 var scrollPosition = window.scrollY;
+
+                // disappearing starts at -100 for up scroll and ends at -300
+                // disappearing starts at 100 for down scroll and ends at 400
+
+
+                //NOTE: FIX THE SCALing ISSUE
+
+                const divs = document.getElementById('main-content').children;
+                for (var i=0;i<divs.length;i++) {
+                    const {
+                        top: t,
+                        left: l
+                    } = divs[i].getBoundingClientRect();
+                    // console.log(i, t);
+
+                    if (t => 100 || t <= -100) {
+                        
+                        if(t=>100){
+                            // console.log('down is ', i);
+                            var op = 1 - (t-100)/300;
+                            divs[i].style.opacity = op;
+                            // divs[i].style.transform = 'scale('+op+')';
+                            
+                        }
+                        if(t<=-100){
+                            // console.log('up is ', i);
+                            var op = 1+(t+100)/200
+                            divs[i].style.opacity = op;
+                        }
+                        
+                        
+                    }
+                }
+
                 
-                const div = document.querySelector('.sub-header')
-                const {
-                    top: t,
-                    left: l
-                } = div.getBoundingClientRect();
-                console.log(t, l)
-
-                // Calculate the size and opacity based on scroll position
-                // var newSize = Math.max(100 - scrollPosition / 3, 0);
-                // var newOpacity = Math.max(1 - scrollPosition / 100, 0);
-
-                // // Apply the new size and opacity to the my-info div
-                // myInfoDiv.style.height = newSize + 'vh';
-                // myInfoDiv.style.opacity = newOpacity;
             }
 
             // Handle scroll event with the new function
